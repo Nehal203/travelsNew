@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const bgVideos = [
-  "videos/bg.mp4",
-  "videos/bg1.mp4",
-  "videos/bg4.mp4"
+const bgImages = [
+  "images/hero1.jpg",
+  "images/hero2.jpg",
+  "images/hero3.jpg"
 ];
 
 export default function HeroSection() {
@@ -14,18 +14,18 @@ export default function HeroSection() {
 
   const nextSlide = () => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % bgVideos.length);
+    setCurrentIndex((prev) => (prev + 1) % bgImages.length);
   };
 
   const prevSlide = () => {
     setDirection(-1);
     setCurrentIndex((prev) =>
-      prev === 0 ? bgVideos.length - 1 : prev - 1
+      prev === 0 ? bgImages.length - 1 : prev - 1
     );
   };
 
   useEffect(() => {
-    const interval = setInterval(() => nextSlide(), 10000);
+    const interval = setInterval(() => nextSlide(), 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -33,18 +33,15 @@ export default function HeroSection() {
     <div className="relative h-screen pt-20 overflow-hidden">
       {/* Stack all videos and fade in the active one */}
       <div className="absolute inset-0 w-full h-full">
-        {bgVideos.map((video, index) => (
-          <motion.video
+        {bgImages.map((image, index) => (
+          <motion.img
             key={index}
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
+            src={image}
+            alt={`Slide ${index + 1}`}
             className="absolute inset-0 w-full h-full object-cover"
             initial={{ opacity: 0 }}
             animate={{ opacity: index === currentIndex ? 1 : 0 }}
-            transition={{ duration: 1 }}
+transition={{ duration: 1.2, ease: "easeInOut" }}
           />
         ))}
       </div>

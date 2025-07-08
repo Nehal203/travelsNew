@@ -8,7 +8,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/hotel.png",
-      video: "videos/hotel.mp4",
+      bgImage: "images/hottelbooking.jpg",
       overlayColor: "bg-black/60",
     },
     {
@@ -16,7 +16,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/flight.png",
-      video: "videos/flight1.mp4",
+      bgImage: "images/flightbooking.jpg",
       overlayColor: "bg-blue-900/60",
     },
     {
@@ -24,7 +24,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/ticket.png",
-      video: "videos/ticket.mp4",
+      bgImage: "images/ticketbooking.jpg",
       overlayColor: "bg-gray-900/60",
     },
     {
@@ -32,7 +32,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/rail1.png",
-      video: "videos/cruises.mp4",
+      bgImage: "images/cruisesbooking.jpg",
       overlayColor: "bg-indigo-900/60",
     },
     {
@@ -40,7 +40,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/train.png",
-      video: "videos/rail.mp4",
+      bgImage: "images/railbooking.jpg",
       overlayColor: "bg-green-900/60",
     },
     {
@@ -48,7 +48,7 @@ export default function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
       icon: "images/star.png",
-      video: "videos/amazing.mp4",
+      bgImage: "images/amazingtourbooking.png",
       overlayColor: "bg-red-900/60",
     },
   ];
@@ -79,17 +79,13 @@ export default function ServicesSection() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="group relative overflow-hidden bg-white rounded-lg shadow-sm transition-all text-center hover:shadow-lg"
               >
-                {/* Background Video */}
-                {service.video && (
-                  <motion.video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                {/* Background Image */}
+                {service.bgImage && (
+                  <img
+                    src={service.bgImage}
+                    alt=""
                     className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-60 transition-opacity duration-500 z-0"
-                  >
-                    <source src={service.video} type="video/mp4" />
-                  </motion.video>
+                  />
                 )}
 
                 {/* Colored Overlay */}
