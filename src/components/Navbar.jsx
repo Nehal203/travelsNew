@@ -1,19 +1,18 @@
-// Navbar.jsx
 import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react'; // Install lucide-react if not already used
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Navigation items and their matching section IDs
   const navItems = [
     { label: 'HOME SLIDER', id: 'home' },
     { label: 'SERVICE', id: 'service' },
@@ -33,10 +32,9 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="flex items-center space-x-8">
-          <h1 className="text-2xl font-bold text-white">Travels</h1>
-        </div>
+        <h1 className="text-2xl font-bold text-white">Travels</h1>
 
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-7">
           {navItems.map(({ label, id }) => (
             <a
@@ -48,7 +46,33 @@ export default function Navbar() {
             </a>
           ))}
         </div>
+
+        {/* Mobile Toggle Button */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white focus:outline-none"
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-black/90 text-white px-4 py-4 space-y-4">
+          {navItems.map(({ label, id }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className="block text-lg font-medium hover:text-blue-400 transition"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
